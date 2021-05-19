@@ -1,3 +1,27 @@
-<<<<<<< HEAD
-# solution code
 # This is our Docker-compose.yml to create a Docker Development Environment
+
+version: '3'
+services:
+  app:
+    container_name: node-app
+    restart: always
+    build: .
+    image: josetorres31/eng84_jose_app
+    environment:
+      - DB_HOST=mongodb://mongo:27017/posts
+    image: josetorres31/eng84_jose_app:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    container_name: db
+    volumes:
+      - dbdata:/data
+    ports:
+      - "27017:27017"
+
+volumes:
+  dbdata:

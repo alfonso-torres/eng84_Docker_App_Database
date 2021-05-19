@@ -20,8 +20,9 @@ COPY . .
 # Expose the port 
 EXPOSE 3000
 
-# launch the app
-CMD ["node", "app.js"]
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 
 # BUILD THE IMAGE: docker build -t josetorres31/eng84_jose_app .
 
